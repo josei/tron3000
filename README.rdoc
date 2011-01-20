@@ -4,10 +4,10 @@ http://tron3000.heroku.com
 
 Tron 3000 is a remake of classic game Tron, which supports:
 
-  * Deathmatch multiplayer gaming: Up to 4 players on the same computer.
-  * Artificial intelligence: Play against computer-controlled players.
-  * Weapons: Increase game difficulty and fun.
-  * Developer-friendly extensions: You can add new weapons and AI algorithms by simply putting the files on the 'extensions' folder
+* Deathmatch multiplayer gaming: Up to 4 players on the same computer.
+* Artificial intelligence: Play against computer-controlled players.
+* Weapons: Increase game difficulty and fun.
+* Developer-friendly extensions: You can add new weapons and AI algorithms by simply putting the files on the 'extensions' folder
 
 Tron 3000 is free software under MIT license, and entirely developed in Ruby, using Ruby-Gosu gem.
 
