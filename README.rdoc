@@ -2,12 +2,45 @@
 
 http://tron3000.heroku.com
 
-Tron 3000 is a remake of classic game Tron, which supports:
+This is a deathmatch-style remake of classic Tron game, for multiple players on the same computer, or for playing against artificial intelligence players. Controls are so simple. There are lots of items to pick up, which make the game very addictive:
+* Green bubbles provide weapons, which can be used using the "fire" button. There are missiles available, and so on.
+* Red bubbles provide temporal skills, such as high speed.
+* Blue bubbles have immediate effects, such as cleaning the screen.
 
-* Deathmatch multiplayer gaming: Up to 4 players on the same computer.
-* Artificial intelligence: Play against computer-controlled players.
-* Weapons: Increase game difficulty and fun.
-* Developer-friendly extensions: You can add new weapons and AI algorithms by simply putting the files on the 'extensions' folder
+Everytime an opponent is killed, you get one point, but if you kill yourself, you'll lose one point. The player with more points wins.
+
+As the game starts, a demo game is played in the background. You can change video resolution and go fullscreen in the "options" menu. In order to play, you have to create some players in the "players" menu, either human or AI players. Then you're ready to start a new game.
+
+For the geeks, the game allows creating new weapons or AI profiles by including new extensions under the 'extensions' folder, such as:
+  tron3000
+    extensions
+      new_extension           (name for the extension)
+        art
+          audio
+            new_item.wav      (sound played when picking the item -- optional)
+          graphics
+            new_item.png      (icon for the item -- optional)
+        code
+          items
+            new_item.rb       (code for the item)
+
+Items are quite easy to code. The following example defines a skill which removes the trail that is left after a player (by redefining the "trail" method that Motorbike class uses):
+
+  Skill do
+    def trail; end
+  end
+
+The next example creates an action which clears all the screen. Like in the previous one, code is executed under the Motorbike class:
+
+  Action do
+    def pick_action
+      @game.arena.clear_all
+    end
+  end
+
+Check more items under tron3000/code/items. If you also want to add a new AI profile to your extension, just create it like tron3000/extensions/new_extensions/code/bots/my_new_killer_bot.rb and you'll be able to select it when creating new players during the game. Check the existing AI profile at tron3000/code/bots/machine.rb. After you have created an extension, you can activate it in the "extensions" menu of the game.
+
+= License
 
 Tron 3000 is free software under MIT license, and entirely developed in Ruby, using Ruby-Gosu gem.
 
