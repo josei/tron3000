@@ -1,0 +1,18 @@
+= Tron 3000
+
+http://tron3000.heroku.com
+
+Tron 3000 is a remake of classic game Tron, which supports:
+
+  * Deathmatch multiplayer gaming: Up to 4 players on the same computer.
+  * Artificial intelligence: Play against computer-controlled players.
+  * Weapons: Increase game difficulty and fun.
+  * Developer-friendly extensions: You can add new weapons and AI algorithms by simply putting the files on the 'extensions' folder
+
+Tron 3000 is free software under MIT license, and entirely developed in Ruby, using Ruby-Gosu gem.
+
+This software uses sounds from junggle, Dynamicell, room, inferno, Stephan.Matson, Satoration and Percy Duke at freesound.org, backgrounds from http://background-wallpaper.110mb.com/ , and FMOD Sound System, copyright © Firelight Technologies Pty, Ltd., 1994-2007.
+
+Thanks to developers of previous versions of Tron, especially to "Super Tron". Thanks to Julian Raschke for his Gosu library and Yukihiro Matsumoto for the Ruby language.
+
+Copyright (c) 2008 José Ignacio Fernández (joseignacio.fernandez at gmail.com), released under the MIT license
