@@ -1,7 +1,7 @@
 require 'player'
 
 def Bot &block
-  c = Object.const_set(File.basename(caller.first.split(':')[-2], '.rb').camelize, Class.new(Bot))
+  c = Object.const_set(File.basename(caller.first.split(':').first, '.rb').camelize, Class.new(Bot))
   c.class_eval(&block)
 end
 

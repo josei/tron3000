@@ -2,12 +2,12 @@ require 'singleton'
 
 class Game < Gosu::Window
   include Singleton
-  
+
   attr_accessor :players
   attr_reader :arena, :entities, :config, :menu, :frames, :fps, :art, :time
   attr_reader :font, :font_height, :big_font, :big_font_height
   attr_reader :bots
-    
+
   def initialize
     @config = Configuration.load
     # Trick to avoid resolution crashes
@@ -40,15 +40,15 @@ class Game < Gosu::Window
       end
       @bots += Tron.contents(:bots, Tron.extensions[ext])
     end
-    
-    @frames = 0    
-    @background = nil    
+
+    @frames = 0
+    @background = nil
   end
-    
+
   def items
     config.extensions.inject([]) { |items,ext| items += @all_items[ext] }
   end
-  
+
   def start time=15
     @entities = []
     @time = 60*time
@@ -70,9 +70,9 @@ class Game < Gosu::Window
   end
 
   def switch_background
-    image = art.images.members.select{|m| m.index("background_")}.sort_by{rand}.first
+    image = art.images.members.select{|m| m.to_s.index("background_")}.sort_by{rand}.first
     @background = art.images[image].first
-    @background_color = Gosu::Color.new(image.split('_')[1].to_i,255,255,255)
+    @background_color = Gosu::Color.new(image.to_s.split('_')[1].to_i,255,255,255)
   end
 
   def finish
@@ -93,14 +93,14 @@ class Game < Gosu::Window
       @config.save
     end
   end
-  
+
   def update
     @menu.update
     @frames += 1
     demo if @frames == 1
 
-    return unless @time > 0 and (!@menu.visible or @demo) 
-    
+    return unless @time > 0 and (!@menu.visible or @demo)
+
     if @frames % 50 == 0
       @art.audio.click.play if @time <=10
       @time -= 1
@@ -115,13 +115,13 @@ class Game < Gosu::Window
     @item_timeout ||= rand(100) + 100; @item_timeout -=1
     if @item_timeout < 0 and bubbles.size < 30
       Bubble.new :item => items[rand(items.size)] if items.size > 0
-      @item_timeout = nil 
+      @item_timeout = nil
     end
   end
-    
+
   def draw
     @timer.calculate_fps
-    
+
     factor=Math.sin(@frames/200.0)/20+1.1; @background.draw_rot(width/2,height/2,-10,0, 0.5,0.5, factor,factor, @background_color) if @background
     @arena.draw
     @entities.each { |i| i.draw }
@@ -130,7 +130,7 @@ class Game < Gosu::Window
     @font.draw_rel((@time/60).to_s+":"+("%.2d"%(time%60)), width/2,height-25,10, 0.5,0.5, 2.0, 2.0, 0x88ff7f00) if @time != 0
     @menu.draw
   end
-  
+
   def button_down(id)
     @menu.button_down(id)
     return if @menu.visible
@@ -142,15 +142,15 @@ class Game < Gosu::Window
     return if @menu.visible
     @players.each { |p| p.button_up(id) }
   end
-  
+
   def motorbikes; players.map { |p| p.entity }.select{ |e| e.is_a? Motorbike }; end
-  
+
   def bubbles; entities.select{ |e| e.is_a? Bubble }; end
-  
+
   def find_player_by_color c
     players.select{|p| p.color == c}.first
   end
-  
+
   def close
     super
     @config.save

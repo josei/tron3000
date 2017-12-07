@@ -3,7 +3,7 @@ require 'attributes'
 class Item
   include Attributes
   
-  nick            { File.basename(caller[7].split(':')[-2], '.rb').to_sym }
+  nick            { File.basename(caller[7].split(':').first, '.rb').to_sym }
   image           { @nick }
   def sound; @sound.is_a?(Symbol) ? @sound : @sound.sort_by { rand }.first; end
   sound           { @nick }
