@@ -1,7 +1,5 @@
 = Tron 3000
 
-http://tron3000.heroku.com
-
 This is a deathmatch-style remake of classic Tron game, for multiple players on the same computer, or for playing against artificial intelligence players. Controls are so simple. There are lots of items to pick up, which make the game very addictive:
 * Green bubbles provide weapons, which can be used using the "fire" button. There are missiles available, and so on.
 * Red bubbles provide temporal skills, such as high speed.
